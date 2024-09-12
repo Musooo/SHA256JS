@@ -24,10 +24,21 @@ function msgScheduleInit(arr){
     return newArr;
 }
 
+function alphaCalc(msg, n){
+    let alpha = []
+    const numB = [[7,18,3],[17,19,10]];
+    for(let i=0; i<numB[n].length; i++){
+        if (i<=1) alpha.push(rightrotate(msg,numB[n][i],32));
+        else alpha.push(rightshift(msg,numB[n][i],32));
+    }
+    
+    return (parseInt(alpha[0],2)^parseInt(alpha[1],2)^parseInt(alpha[2],2)).toString(2).padStart(32,"0");
+}
+
 //row calculation
 function rowSum(w,w2,w3,w4){
-    a0 = alphaCalc(w3,0)
-    a1 = alphaCalc(w4,1)
+    let a0 = alphaCalc(w3,0)
+    let a1 = alphaCalc(w4,1)
     return (parseInt(w,2)+parseInt(a0,2)+parseInt(w2,2)+parseInt(a1,2)).toString(2).padStart(32,"0") //TODO i fear of a last 1+1 that makes it 33
 }
 
@@ -38,3 +49,10 @@ function rowPopulation(msgSchedule){ //msgSchedule has 16 line from 0 to 15 then
     }
     return msgSchedule
 }
+
+function msgScheduleNew(arr){
+    let msgSchedule16 = msgScheduleInit(arr);
+    return rowPopulation(msgSchedule16);
+}
+
+export default msgScheduleNew;

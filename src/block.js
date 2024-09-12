@@ -38,3 +38,5 @@ function buildBlock(str){
     addEnd(str);
     return messageBlock;
 }
+
+export default buildBlock;
