@@ -1,4 +1,3 @@
-import { writeFile } from 'fs';
 var messageBlock = []
 
 function stringToBinary(str){
@@ -10,7 +9,6 @@ function stringToBinary(str){
 
 function addZero(){
     let len = (messageBlock.length*8) + 64;
-    console.log(len)
     let i = 0;
     while(true){
         i+=1;
@@ -24,34 +22,19 @@ function addZero(){
     }
 }
 
-// function addEnd(str){
-//     let st =char((str.length)*8)
-//     st = st.charCodeAt(0).toString(2).padStart(64,"0");
-//     for (let i = 0; i < str.length; i += 8) {
-//         let chunk = st.slice(i, i + 8);
-        
-//         messageBlock.push(chunk);
-//     }
-//     return messageBlock;
-// }
-
-// console.log(stringToBinary("1"));
+function addEnd(str){
+    let st = ((str.length)*8).toString(2).padStart(64,"0");
+    for (let i = 0; i < st.length; i += 8) {
+        let chunk = st.slice(i, i + 8);
+        messageBlock.push(chunk);
+    }
+    return messageBlock;
+}
 
 function buildBlock(str){
     stringToBinary(str);
     messageBlock.push("10000000")
     addZero();
-    // addEnd(str);
+    addEnd(str);
     return messageBlock;
 }
-
-messageBlock = buildBlock("ab")
-
-const arrayString = JSON.stringify(messageBlock, null, 2); 
-writeFile('output.json', arrayString, (err) => {
-    if (err) {
-        console.error('Errore nella scrittura del file:', err);
-    } else {
-        console.log('File scritto con successo.');
-    }
-});
