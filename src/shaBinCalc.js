@@ -1,4 +1,4 @@
-
+import { rightrotate, rightshift } from "./msgSchedule.js";
 function notBin(str){
     let inv = '';
     for (let char of str){
@@ -19,3 +19,9 @@ function getSum(str, n){
 function calcTmp1(h,summand1,choice,ki,wi){
     return (parseInt(h,2)+parseInt(summand1,2)+parseInt(choice,2)+parseInt(ki,2)+parseInt(wi,2)).toString(2).padStart(32,"0");  
 }
+
+function majority(a,b,c){
+    return ((parseInt(a,2)&parseInt(b,2))^(parseInt(a,2)&parseInt(c,2))^(parseInt(b,2)&parseInt(c,2))).toString(2).padStart(32,"0");
+}
+
+export default majority;

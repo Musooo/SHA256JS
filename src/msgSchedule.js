@@ -55,4 +55,4 @@ function msgScheduleNew(arr){
     return rowPopulation(msgSchedule16);
 }
 
-export default msgScheduleNew;
+export { msgScheduleNew, rightrotate, rightshift};
