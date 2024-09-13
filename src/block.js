@@ -17,7 +17,7 @@ function addZero(){
             for(let j = 0; j<missing; j++){
                 messageBlock.push("00000000");
             }
-            return messageBlock;
+            return i;
         }
     }
 }
@@ -34,9 +34,9 @@ function addEnd(str){
 function buildBlock(str){
     stringToBinary(str);
     messageBlock.push("10000000")
-    addZero();
+    const importantN = addZero(); //use it for more message schedule
     addEnd(str);
-    return messageBlock;
+    return [messageBlock, importantN];
 }
 
 export default buildBlock;
