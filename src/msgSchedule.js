@@ -43,7 +43,7 @@ function rowSum(w,w2,w3,w4){
 }
 
 //from the 16 starting we will get evrey other them
-function rowPopulation(msgSchedule){ //msgSchedule has 16 line from 0 to 15 then you wil get it with 63 
+function rowPopulation(msgSchedule){ //msgSchedule has 16 line from 0 to 15 then you wil get it with 63 (64 length) 
     for(let i=16;msgSchedule.length<64;i++){
         msgSchedule.push(rowSum(msgSchedule[i-16],msgSchedule[i-7],msgSchedule[i-15],msgSchedule[i-2]))
     }
