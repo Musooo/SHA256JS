@@ -48,11 +48,3 @@ for (let i = 1; i<=importantN; i++){
 }
 
 console.log(arrH);
-
-//let messageSchedule = msgScheduleNew(msgBlock);
-// let arrHCopy = arrH.slice();
-// for (let i=0; i<64; i++){
-//     arrHCopy = swapLetter(arrHCopy,arrK[i],messageSchedule[i]);
-// }
-
-//console.log(ashed(arrH,arrHCopy));
