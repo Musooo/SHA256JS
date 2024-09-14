@@ -8,7 +8,7 @@ function notBin(str){
 }
 
 function getChoice(e,f,g){
-    return ((parseInt(e,2)&parseInt(f,2))^(parseInt(notBin(e),2)&parseInt(g,2))).toString(2).padStart(32,"0");
+    return (((parseInt(e,2) & parseInt(f,2)) ^ (parseInt(notBin(e),2) & parseInt(g,2)))>>>0).toString(2).padStart(32,"0");
 }
 
 function getSum(str, n){
@@ -25,7 +25,7 @@ function calcTmp2(summand0, major){
 }
 
 function majority(a,b,c){
-    return ((parseInt(a,2)&parseInt(b,2))^(parseInt(a,2)&parseInt(c,2))^(parseInt(b,2)&parseInt(c,2))).toString(2).padStart(32,"0");
+    return (((parseInt(a,2)&parseInt(b,2))^(parseInt(a,2)&parseInt(c,2))^(parseInt(b,2)&parseInt(c,2)))>>>0).toString(2).padStart(32,"0");
 }
 
 // a,b,c,d,e,f,g,h == h0,h1,h2,h3,h4,h5,h6,h7
