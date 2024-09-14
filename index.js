@@ -4,6 +4,18 @@ import {msgScheduleNew} from "./src/msgSchedule.js";
 import initConst from "./src/createHK.js";
 import swapLetter from "./src/shaBinCalc.js"
 
+function sumOfHinitAndLastLetters(initH,lastLetter){
+    return (parseInt(initH,2)+parseInt(lastLetter,2)).toString(16);
+}
+
+function ashed(initHArr, lastLetterArr){
+    let ashedString = '';
+    for(let i=0; i<initHArr.length; i++){
+        ashedString+=sumOfHinitAndLastLetters(initHArr[i],lastLetterArr[i]);
+    }
+    return ashedString;
+}
+
 let str = "a";
 let initPos = 0;
 const primArr = [
@@ -27,4 +39,4 @@ for (let i=0; i<64; i++){
     arrHCopy = swapLetter(arrHCopy,arrK[i],messageSchedule[i]);
 }
 
-console.log(arrHCopy);
+console.log(ashed(arrH,arrHCopy));
