@@ -13,11 +13,11 @@ function getChoice(e,f,g){
 
 function getSum(str, n){
     const num =[[2,13,22],[6,11,25]];
-    return (((parseInt(rightrotate(str,num[n][0],32),2))^(parseInt(rightrotate(str,num[n][1],32),2))^(parseInt(rightrotate(str,num[n][2],32),2)))>>>0).toString(2).padStart(32,"0");
+    return ((parseInt(rightrotate(str,num[n][0],32),2)^parseInt(rightrotate(str,num[n][1],32),2)^parseInt(rightrotate(str,num[n][2],32),2))>>>0).toString(2).padStart(32,"0");
 }
 
 function calcTmp1(h,summand1,choice,ki,wi){
-    return (parseInt(h,2)+parseInt(summand1,2)+parseInt(choice,2)+parseInt(ki,2)+parseInt(wi,2)).toString(2).padStart(32,"0");  
+    return (parseInt(h,2)+parseInt(summand1,2)+parseInt(choice,2)+parseInt(ki,2)+parseInt(wi,2)).toString(2).padStart(32,"0").slice(-32);  
 }
 
 function calcTmp2(summand0, major){
@@ -29,7 +29,8 @@ function majority(a,b,c){
 }
 
 // a,b,c,d,e,f,g,h == h0,h1,h2,h3,h4,h5,h6,h7
-function swapLetter(lettersArr, lettersArrCopy, ki, wi){
+function swapLetter(lettersArr, ki, wi){
+    let lettersArrCopy = lettersArr.slice()
     lettersArrCopy[7] = lettersArr[6]; //h
     lettersArrCopy[6] = lettersArr[5]; //g
     lettersArrCopy[5] = lettersArr[4]; //f
@@ -37,7 +38,7 @@ function swapLetter(lettersArr, lettersArrCopy, ki, wi){
     lettersArrCopy[3] = lettersArr[2]; //d
     lettersArrCopy[2] = lettersArr[1]; //c
     lettersArrCopy[1] = lettersArr[0]; // b
-    lettersArrCopy[0] = (parseInt(calcTmp1(lettersArr[7],getSum(lettersArr[4],1),getChoice(lettersArr[4],lettersArr[5],lettersArr[6]),ki,wi),2)+calcTmp2(getSum(lettersArr[0],0),majority(lettersArr[0],lettersArr[1],lettersArr[2]))).toString(2).padStart(32,"0").slice(-32);//a
+    lettersArrCopy[0] = (parseInt(calcTmp1(lettersArr[7],getSum(lettersArr[4],1),getChoice(lettersArr[4],lettersArr[5],lettersArr[6]),ki,wi),2)+parseInt(calcTmp2(getSum(lettersArr[0],0),majority(lettersArr[0],lettersArr[1],lettersArr[2])),2)).toString(2).padStart(32,"0").slice(-32);//a
     return lettersArrCopy;
 }
 

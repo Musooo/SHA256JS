@@ -22,4 +22,4 @@ const [msgBlock, importantN] = buildBlock(str);
 // // }
 
 let messageSchedule = msgScheduleNew(msgBlock);
-console.log(swapLetter(arrH, arrH,arrK[0],messageSchedule[0]));
+console.log(swapLetter(arrH,arrK[0],messageSchedule[0]));
