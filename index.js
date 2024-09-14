@@ -16,7 +16,15 @@ function ashed(initHArr, lastLetterArr){
     return ashedString;
 }
 
-let str = "a";
+function ashedBinArr(initHArr, lastLetterArr){
+    let newHArr = []
+    for(let i=0; i<initHArr.length; i++){
+        newHArr.push((parseInt(initHArr[i],2)+parseInt(lastLetterArr[i],2)).toString(2));
+    }
+    return newHArr;
+}
+
+let str = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 let initPos = 0;
 const primArr = [
     2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 
@@ -28,15 +36,23 @@ const arrK = initConst(primArr,1/3);
 let arrH = initConst(primArr.slice(0,8),1/2);
 
 const [msgBlock, importantN] = buildBlock(str);
-// // for (let i = 1; i<=importantN; i++){
-// //     let messageSchedule = buildBlock(messageBlock.slice(initPos,64*i));
-// //     initPos += 64
-// // }
-
-let messageSchedule = msgScheduleNew(msgBlock);
-let arrHCopy = arrH.slice();
-for (let i=0; i<64; i++){
-    arrHCopy = swapLetter(arrHCopy,arrK[i],messageSchedule[i]);
+for (let i = 1; i<=importantN; i++){
+    let messageSchedule = msgScheduleNew(msgBlock.slice(initPos,64*i));
+    initPos += 64
+    let arrHCopy = arrH.slice();
+    for (let j=0; j<64; j++){
+        arrHCopy = swapLetter(arrHCopy,arrK[j],messageSchedule[j]);
+    }
+    if(i!=importantN) arrH=ashedBinArr(arrH,arrHCopy);
+    else arrH=ashed(arrH,arrHCopy);
 }
 
-console.log(ashed(arrH,arrHCopy));
+console.log(arrH);
+
+//let messageSchedule = msgScheduleNew(msgBlock);
+// let arrHCopy = arrH.slice();
+// for (let i=0; i<64; i++){
+//     arrHCopy = swapLetter(arrHCopy,arrK[i],messageSchedule[i]);
+// }
+
+//console.log(ashed(arrH,arrHCopy));
